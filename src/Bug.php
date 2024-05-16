@@ -27,55 +27,55 @@ class Bug
     private $products;
     
     public function getId(): int|null {
-    return $this->id;
+        return $this->id;
     }
     public function getDescription(): string {
-    return $this->description;
+        return $this->description;
     }
     public function setDescription(string $description): void {
-    $this->description = $description;
+        $this->description = $description;
     }
     public function setCreated(DateTime $created) {
-    $this->created = $created;
+        $this->created = $created;
     }
     public function getCreated(): DateTime {
-    return $this->created;
+        return $this->created;
     }
     public function setStatus($status): void {
-    $this->status = $status;
+        $this->status = $status;
     }
     public function getStatus():string {
-    return $this->status;
+        return $this->status;
     }
     public function __construct()
     {
-    $this->products = new ArrayCollection();
+        $this->products = new ArrayCollection();
     }
     public function setEngineer(User $engineer): void
     {
-    $engineer->assignedToBug($this);
-    $this->engineer = $engineer;
+        $engineer->assignedToBug($this);
+        $this->engineer = $engineer;
     }
     public function setReporter(User $reporter): void
     {
-    $reporter->addReportedBug($this);
-    $this->reporter = $reporter;
+        $reporter->addReportedBug($this);
+        $this->reporter = $reporter;
     }
     public function getEngineer(): User
     {
-    return $this->engineer;
+        return $this->engineer;
     }
     public function getReporter(): User
     {
-    return $this->reporter;
+        return $this->reporter;
     }
     public function assignToProduct(Product $product): void
     {
-    $this->products[] = $product;
+        $this->products[] = $product;
     }
     public function getProducts()
     {
-    return $this->products;
+        return $this->products;
     }
 
 }
