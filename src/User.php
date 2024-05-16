@@ -1,10 +1,10 @@
 <?php
 // src/User.php
-/*use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 #[ORM\Entity]
 #[ORM\Table(name: 'users')]
- */
-use Doctrine\Common\Collections\ArrayCollection;
+
 class User
 {
 /** @var int */
@@ -12,9 +12,12 @@ class User
 #[ORM\GeneratedValue]
 #[ORM\Column(type: 'integer')]
 private int|null $id = null;
-/** @var string */
 #[ORM\Column(type: 'string')]
 private string $name;
+#[ORM\OneToMany(targetEntity: Bug::class, mappedBy: 'reporter')]
+private $reportedBugs;
+#[ORM\OneToMany(targetEntity: Bug::class, mappedBy: 'engineer')]
+private $assignedBugs;
 public function getId(): int|null
 {
 return $this->id;
@@ -27,8 +30,6 @@ public function setName(string $name): void
 {
 $this->name = $name;
 }
-private $reportedBugs = null;
-private $assignedBugs = null;
 public function __construct()
 {
 $this->reportedBugs = new ArrayCollection();
