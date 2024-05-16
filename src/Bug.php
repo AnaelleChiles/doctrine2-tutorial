@@ -1,5 +1,8 @@
 <?php
 // src/Bug.php
+/*use Doctrine\ORM\Mapping as ORM;
+#[ORM\Entity]
+#[ORM\Table(name: 'bugs')] */
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -37,9 +40,38 @@ $this->status = $status;
 public function getStatus():string {
 return $this->status;
 }
-private $products;
 public function __construct()
 {
 $this->products = new ArrayCollection();
 }
+private User $engineer;
+private User $reporter;
+public function setEngineer(User $engineer): void
+{
+$engineer->assignedToBug($this);
+$this->engineer = $engineer;
+}
+public function setReporter(User $reporter): void
+{
+$reporter->addReportedBug($this);
+$this->reporter = $reporter;
+}
+public function getEngineer(): User
+{
+return $this->engineer;
+}
+public function getReporter(): User
+{
+return $this->reporter;
+}
+private $products;
+public function assignToProduct(Product $product): void
+{
+$this->products[] = $product;
+}
+public function getProducts()
+{
+return $this->products;
+}
+
 }

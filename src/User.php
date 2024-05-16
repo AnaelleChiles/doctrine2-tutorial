@@ -1,5 +1,9 @@
 <?php
 // src/User.php
+/*use Doctrine\ORM\Mapping as ORM;
+#[ORM\Entity]
+#[ORM\Table(name: 'users')]
+ */
 use Doctrine\Common\Collections\ArrayCollection;
 class User
 {
@@ -30,5 +34,12 @@ public function __construct()
 $this->reportedBugs = new ArrayCollection();
 $this->assignedBugs = new ArrayCollection();
 }
-
+public function addReportedBug(Bug $bug): void
+{
+$this->reportedBugs[] = $bug;
+}
+public function assignedToBug(Bug $bug): void
+{
+$this->assignedBugs[] = $bug;
+}
 }
