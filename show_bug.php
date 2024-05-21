@@ -7,5 +7,5 @@
         exit(1);
     }
     //$bug = $entityManager->find('User', $bug->getEngineer());
-    echo sprintf("-%s%s\n", "bug : " ,$bug->getDescription());
-    echo sprintf("-%s%s\n", "engineer : " , $bug->getEngineer());
+    echo sprintf("%s%s\n", "bug : " ,$bug->getDescription());
+    echo sprintf("%s%s\n", "engineer : " , $bug->getEngineer()->getName());
